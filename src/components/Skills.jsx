@@ -1,13 +1,13 @@
-function Skills({ skills, onSkillClick }) {
+function Skills({ skills, onDeleteSkill }) {
   return (
     <div>
       {skills.map((skill, index) => (
-        <button key={index} onClick={() => onSkillClick(skill)}>
-          {skill}
-        </button>
+        <div key={index}>
+          <span>{skill}</span>
+          <button onClick={() => onDeleteSkill(index)}>Slett</button>
+        </div>
       ))}
     </div>
   );
 }
-
 export default Skills;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Header from "./Header";
 //import PersonalInfo from "./PersonalInfo";
@@ -9,19 +9,21 @@ import Footer from "./components/Footer";
 import Projects from "./components/Projects";
 
 function App() {
-  const handleSkillClick = (skill) => {
-    alert(`Du klikket på: ${skill}`);
+  const [skills, setSkills] = useState(["leap", "eat", "chill"]);
+
+  const handleDeleteSkill = (index) => {
+    setSkills(skills.filter((_, i) => i !== index));
   };
 
   const projects = [
     {
       title: "Project 1",
-      description: "Beskrivelse av prosjekt 1",
+      description: "Project 1 description",
       link: "http://example.com",
     },
     {
       title: "Project 2",
-      description: "Beskrivelse av prosjekt 2",
+      description: "Project 2 description",
       link: "http://example.com",
     },
   ];
@@ -31,10 +33,7 @@ function App() {
       <h1>Frog CV</h1>
       <Header />
       <Education school="Tadpole-academy" degree="Leap science" />
-      <Skills
-        skills={["Jumping", "Swimming", "Eating"]}
-        onSkillClick={handleSkillClick}
-      />
+      <Skills skills={skills} onDeleteSkill={handleDeleteSkill} />
       <Projects projects={projects} />
       <Footer year={2024} />
     </div>
